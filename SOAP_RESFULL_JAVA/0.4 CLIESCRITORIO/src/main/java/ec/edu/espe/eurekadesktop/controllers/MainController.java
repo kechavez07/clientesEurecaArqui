@@ -11,6 +11,7 @@ public class MainController {
     @FXML private Label lblBackend;
     @FXML private Button btnDeposito;
     @FXML private Button btnConsulta;
+    @FXML private Button btnTransferencia;
     @FXML private Button btnSalir;
 
     @FXML
@@ -29,6 +30,11 @@ public class MainController {
     @FXML
     private void handleConsulta() {
         Main.loadView("ec/edu/espe/eurekadesktop/views/ConsultaView.fxml");
+    }
+
+    @FXML
+    private void handleTransferencia() {
+        Main.loadView("ec/edu/espe/eurekadesktop/views/TransferenciaView.fxml");
     }
 
     @FXML

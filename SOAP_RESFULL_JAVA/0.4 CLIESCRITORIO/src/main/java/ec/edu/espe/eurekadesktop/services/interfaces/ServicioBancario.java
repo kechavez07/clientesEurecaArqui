@@ -10,6 +10,7 @@ public interface ServicioBancario {
     Usuario login(String username, String password) throws Exception;
     List<Movimiento> obtenerMovimientos(String token, String cuenta) throws Exception;
     Deposito registrarDeposito(String token, String cuenta, double importe) throws Exception;
+    String transferencia(String token, String cuentaOrigen, String cuentaDestino, double importe) throws Exception;
     String getEndpoint();
     Backend getBackend();
 }

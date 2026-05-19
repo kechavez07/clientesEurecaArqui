@@ -55,15 +55,20 @@
                         </padding>
                     </Button>
                     
+                    <Button fx:id="btnTransferencia" text="TRANSFERENCIA" 
+                            style="-fx-background-color: #1E293B; -fx-text-fill: #8B5CF6; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 12; -fx-border-color: #8B5CF6; -fx-border-radius: 12; -fx-cursor: hand;"
+                            onAction="#handleTransferencia" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <padding>
+                            <Insets top="30" bottom="30" left="40" right="40"/>
+                        </padding>
+                    </Button>
+                    
                     <Button fx:id="btnSalir" text="SALIR" 
                             style="-fx-background-color: #1E293B; -fx-text-fill: #EF4444; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 12; -fx-border-color: #EF4444; -fx-border-radius: 12; -fx-cursor: hand;"
-                            onAction="#handleSalir" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                            onAction="#handleSalir" GridPane.columnIndex="1" GridPane.rowIndex="1">
                         <padding>
-                            <Insets top="20" bottom="20" left="80" right="80"/>
+                            <Insets top="30" bottom="30" left="40" right="40"/>
                         </padding>
-                        <GridPane.margin>
-                            <Insets top="10"/>
-                        </GridPane.margin>
                     </Button>
                 </GridPane>
             </VBox>

@@ -12,47 +12,50 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class ServicioRestJava implements ServicioBancario {
+public class ServicioRestDotNet implements ServicioBancario {
     private final String endpoint;
     private final Properties config;
     private final Gson gson = new Gson();
 
-    public ServicioRestJava(Properties config) {
+    public ServicioRestDotNet(Properties config) {
         this.config = config;
-        this.endpoint = config.getProperty("rest.java.url", "http://209.145.48.25:8090/resources/corebancario");
+        this.endpoint = config.getProperty("rest.dotnet.url", "http://209.145.48.25:8093/resources/corebancario");
     }
 
     @Override
     public Usuario login(String username, String password) throws Exception {
         String json = "{\"usuario\":\"" + username + "\",\"password\":\"" + password + "\"}";
-        ConsolaDebug.log("REST JAVA - LOGIN REQUEST", json);
+        ConsolaDebug.log("REST DOTNET - LOGIN REQUEST", json);
 
         String response = sendRequest("/login", "POST", json);
-        ConsolaDebug.log("REST JAVA - LOGIN RESPONSE", response);
+        ConsolaDebug.log("REST DOTNET - LOGIN RESPONSE", response);
 
         LoginResponse loginResp = gson.fromJson(response, LoginResponse.class);
         if (loginResp.resultado == null || !loginResp.resultado.equals("Exitoso")) {
             throw new Exception("Login fallido: " + response);
         }
-        return new Usuario(username, "NO_TOKEN_NEEDED", Backend.REST_JAVA);
+        return new Usuario(username, "NO_TOKEN_NEEDED", Backend.REST_DOTNET);
     }
 
     @Override
     public List<Movimiento> obtenerMovimientos(String token, String cuenta) throws Exception {
         String response = sendRequest("/movimientos/" + cuenta, "GET", null, token);
-        ConsolaDebug.log("REST JAVA - MOVIMIENTOS RESPONSE", response);
+        ConsolaDebug.log("REST DOTNET - MOVIMIENTOS RESPONSE", response);
 
-        java.lang.reflect.Type listType = new TypeToken<List<Movimiento>>(){}.getType();
-        return gson.fromJson(response, listType);
+        MovimientosResponse movResp = gson.fromJson(response, MovimientosResponse.class);
+        if (movResp.movimientos == null) {
+            return new ArrayList<>();
+        }
+        return movResp.movimientos;
     }
 
     @Override
     public Deposito registrarDeposito(String token, String cuenta, double importe) throws Exception {
         String json = "{\"cuenta\":\"" + cuenta + "\",\"importe\":" + importe + "}";
-        ConsolaDebug.log("REST JAVA - DEPOSITO REQUEST", json);
+        ConsolaDebug.log("REST DOTNET - DEPOSITO REQUEST", json);
 
         String response = sendRequest("/deposito", "POST", json, token);
-        ConsolaDebug.log("REST JAVA - DEPOSITO RESPONSE", response);
+        ConsolaDebug.log("REST DOTNET - DEPOSITO RESPONSE", response);
 
         return gson.fromJson(response, Deposito.class);
     }
@@ -60,10 +63,10 @@ public class ServicioRestJava implements ServicioBancario {
     @Override
     public String transferencia(String token, String cuentaOrigen, String cuentaDestino, double importe) throws Exception {
         String json = "{\"cuentaOrigen\":\"" + cuentaOrigen + "\",\"cuentaDestino\":\"" + cuentaDestino + "\",\"importe\":" + importe + "}";
-        ConsolaDebug.log("REST JAVA - TRANSFERENCIA REQUEST", json);
+        ConsolaDebug.log("REST DOTNET - TRANSFERENCIA REQUEST", json);
 
         String response = sendRequest("/transferencia", "POST", json, token);
-        ConsolaDebug.log("REST JAVA - TRANSFERENCIA RESPONSE", response);
+        ConsolaDebug.log("REST DOTNET - TRANSFERENCIA RESPONSE", response);
 
         return response;
     }
@@ -75,7 +78,7 @@ public class ServicioRestJava implements ServicioBancario {
 
     @Override
     public Backend getBackend() {
-        return Backend.REST_JAVA;
+        return Backend.REST_DOTNET;
     }
 
     private String sendRequest(String path, String method, String body) throws Exception {

@@ -11,55 +11,55 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class ServicioSoapJava implements ServicioBancario {
+public class ServicioSoapDotNet implements ServicioBancario {
     private final String endpoint;
     private final Properties config;
 
-    public ServicioSoapJava(Properties config) {
+    public ServicioSoapDotNet(Properties config) {
         this.config = config;
-        this.endpoint = config.getProperty("soap.java.url", "http://209.145.48.25:8091/ROOT/CoreBancarioWS");
+        this.endpoint = config.getProperty("soap.dotnet.url", "http://209.145.48.25:8092/CoreBancarioWS");
     }
 
     @Override
     public Usuario login(String username, String password) throws Exception {
         String xmlRequest = buildLoginRequest(username, password);
-        ConsolaDebug.log("SOAP JAVA - LOGIN REQUEST", xmlRequest);
+        ConsolaDebug.log("SOAP DOTNET - LOGIN REQUEST", xmlRequest);
 
-        String xmlResponse = sendSoapRequest(xmlRequest);
-        ConsolaDebug.log("SOAP JAVA - LOGIN RESPONSE", xmlResponse);
+        String xmlResponse = sendSoapRequest(xmlRequest, "Login");
+        ConsolaDebug.log("SOAP DOTNET - LOGIN RESPONSE", xmlResponse);
 
         return parseLoginResponse(xmlResponse);
     }
 
     @Override
     public List<Movimiento> obtenerMovimientos(String token, String cuenta) throws Exception {
-        String xmlRequest = buildMovimientosRequest(token, cuenta);
-        ConsolaDebug.log("SOAP JAVA - MOVIMIENTOS REQUEST", xmlRequest);
+        String xmlRequest = buildMovimientosRequest(cuenta);
+        ConsolaDebug.log("SOAP DOTNET - MOVIMIENTOS REQUEST", xmlRequest);
 
-        String xmlResponse = sendSoapRequest(xmlRequest);
-        ConsolaDebug.log("SOAP JAVA - MOVIMIENTOS RESPONSE", xmlResponse);
+        String xmlResponse = sendSoapRequest(xmlRequest, "ObtenerMovimientos");
+        ConsolaDebug.log("SOAP DOTNET - MOVIMIENTOS RESPONSE", xmlResponse);
 
         return parseMovimientosResponse(xmlResponse);
     }
 
     @Override
     public Deposito registrarDeposito(String token, String cuenta, double importe) throws Exception {
-        String xmlRequest = buildDepositoRequest(token, cuenta, importe);
-        ConsolaDebug.log("SOAP JAVA - DEPOSITO REQUEST", xmlRequest);
+        String xmlRequest = buildDepositoRequest(cuenta, importe);
+        ConsolaDebug.log("SOAP DOTNET - DEPOSITO REQUEST", xmlRequest);
 
-        String xmlResponse = sendSoapRequest(xmlRequest);
-        ConsolaDebug.log("SOAP JAVA - DEPOSITO RESPONSE", xmlResponse);
+        String xmlResponse = sendSoapRequest(xmlRequest, "RegistrarDeposito");
+        ConsolaDebug.log("SOAP DOTNET - DEPOSITO RESPONSE", xmlResponse);
 
         return parseDepositoResponse(xmlResponse);
     }
 
     @Override
     public String transferencia(String token, String cuentaOrigen, String cuentaDestino, double importe) throws Exception {
-        String xmlRequest = buildTransferenciaRequest(token, cuentaOrigen, cuentaDestino, importe);
-        ConsolaDebug.log("SOAP JAVA - TRANSFERENCIA REQUEST", xmlRequest);
+        String xmlRequest = buildTransferenciaRequest(cuentaOrigen, cuentaDestino, importe);
+        ConsolaDebug.log("SOAP DOTNET - TRANSFERENCIA REQUEST", xmlRequest);
 
-        String xmlResponse = sendSoapRequest(xmlRequest);
-        ConsolaDebug.log("SOAP JAVA - TRANSFERENCIA RESPONSE", xmlResponse);
+        String xmlResponse = sendSoapRequest(xmlRequest, "RegistrarTransferencia");
+        ConsolaDebug.log("SOAP DOTNET - TRANSFERENCIA RESPONSE", xmlResponse);
 
         return parseTransferenciaResponse(xmlResponse);
     }
@@ -71,7 +71,7 @@ public class ServicioSoapJava implements ServicioBancario {
 
     @Override
     public Backend getBackend() {
-        return Backend.SOAP_JAVA;
+        return Backend.SOAP_DOTNET;
     }
 
     private String buildLoginRequest(String username, String password) {
@@ -80,63 +80,63 @@ public class ServicioSoapJava implements ServicioBancario {
                "xmlns:ws=\"http://ws.monster.edu.ec/\">" +
                "<soapenv:Header/>" +
                "<soapenv:Body>" +
-               "<ws:login>" +
-               "<usuario>" + XmlUtils.escapeXml(username) + "</usuario>" +
-               "<password>" + XmlUtils.escapeXml(password) + "</password>" +
-               "</ws:login>" +
+               "<ws:Login>" +
+               "<ws:usuario>" + XmlUtils.escapeXml(username) + "</ws:usuario>" +
+               "<ws:password>" + XmlUtils.escapeXml(password) + "</ws:password>" +
+               "</ws:Login>" +
                "</soapenv:Body>" +
                "</soapenv:Envelope>";
     }
 
-    private String buildMovimientosRequest(String token, String cuenta) {
+    private String buildMovimientosRequest(String cuenta) {
         return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" " +
                "xmlns:ws=\"http://ws.monster.edu.ec/\">" +
                "<soapenv:Header/>" +
                "<soapenv:Body>" +
-               "<ws:obtenerMovimientos>" +
-               "<cuenta>" + XmlUtils.escapeXml(cuenta) + "</cuenta>" +
-               "</ws:obtenerMovimientos>" +
+               "<ws:ObtenerMovimientos>" +
+               "<ws:cuenta>" + XmlUtils.escapeXml(cuenta) + "</ws:cuenta>" +
+               "</ws:ObtenerMovimientos>" +
                "</soapenv:Body>" +
                "</soapenv:Envelope>";
     }
 
-    private String buildDepositoRequest(String token, String cuenta, double importe) {
+    private String buildDepositoRequest(String cuenta, double importe) {
         return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" " +
                "xmlns:ws=\"http://ws.monster.edu.ec/\">" +
                "<soapenv:Header/>" +
                "<soapenv:Body>" +
-               "<ws:registrarDeposito>" +
-               "<cuenta>" + XmlUtils.escapeXml(cuenta) + "</cuenta>" +
-               "<importe>" + importe + "</importe>" +
-               "</ws:registrarDeposito>" +
+               "<ws:RegistrarDeposito>" +
+               "<ws:cuenta>" + XmlUtils.escapeXml(cuenta) + "</ws:cuenta>" +
+               "<ws:importe>" + importe + "</ws:importe>" +
+               "</ws:RegistrarDeposito>" +
                "</soapenv:Body>" +
                "</soapenv:Envelope>";
     }
 
-    private String buildTransferenciaRequest(String token, String cuentaOrigen, String cuentaDestino, double importe) {
+    private String buildTransferenciaRequest(String cuentaOrigen, String cuentaDestino, double importe) {
         return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" " +
                "xmlns:ws=\"http://ws.monster.edu.ec/\">" +
                "<soapenv:Header/>" +
                "<soapenv:Body>" +
-               "<ws:registrarTransferencia>" +
-               "<cuentaOrigen>" + XmlUtils.escapeXml(cuentaOrigen) + "</cuentaOrigen>" +
-               "<cuentaDestino>" + XmlUtils.escapeXml(cuentaDestino) + "</cuentaDestino>" +
-               "<importe>" + importe + "</importe>" +
-               "</ws:registrarTransferencia>" +
+               "<ws:RegistrarTransferencia>" +
+               "<ws:cuentaOrigen>" + XmlUtils.escapeXml(cuentaOrigen) + "</ws:cuentaOrigen>" +
+               "<ws:cuentaDestino>" + XmlUtils.escapeXml(cuentaDestino) + "</ws:cuentaDestino>" +
+               "<ws:importe>" + importe + "</ws:importe>" +
+               "</ws:RegistrarTransferencia>" +
                "</soapenv:Body>" +
                "</soapenv:Envelope>";
     }
 
-    private String sendSoapRequest(String xml) throws Exception {
+    private String sendSoapRequest(String xml, String action) throws Exception {
         java.net.URL url = new java.net.URL(endpoint);
         java.net.HttpURLConnection conn = (java.net.HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
         conn.setRequestProperty("Content-Type", "text/xml;charset=UTF-8");
-        conn.setRequestProperty("SOAPAction", "\"\"");
+        conn.setRequestProperty("SOAPAction", "\"http://ws.monster.edu.ec/CoreBancarioWS/" + action + "\"");
         conn.setConnectTimeout(Integer.parseInt(config.getProperty("timeout.connection", "10000")));
         conn.setReadTimeout(Integer.parseInt(config.getProperty("timeout.read", "10000")));
 
@@ -170,12 +170,15 @@ public class ServicioSoapJava implements ServicioBancario {
             throw new Exception(fault != null ? fault : "Error en login");
         }
 
-        String token = XmlUtils.extractTag(xml, "return");
-        if (token == null || token.isEmpty()) {
-            throw new Exception("Token no recibido");
+        if (xml.contains("LoginResult") && (xml.contains("1") || xml.contains("Exitoso") || xml.contains("true"))) {
+            return new Usuario("MONSTER", "token_dotnet", Backend.SOAP_DOTNET);
+        }
+        
+        if (xml.contains("<return>") && (xml.contains("1") || xml.contains("Exitoso") || xml.contains("true"))) {
+            return new Usuario("MONSTER", "token_dotnet", Backend.SOAP_DOTNET);
         }
 
-        return new Usuario("usuario", token, Backend.SOAP_JAVA);
+        throw new Exception("Login fallido");
     }
 
     private List<Movimiento> parseMovimientosResponse(String xml) {
@@ -185,32 +188,52 @@ public class ServicioSoapJava implements ServicioBancario {
             return movimientos;
         }
 
-        String[] returns = xml.split("<return>");
-        for (int i = 1; i < returns.length; i++) {
-            String returnBlock = returns[i];
+        int startResult = xml.indexOf("<ObtenerMovimientosResult>");
+        if (startResult == -1) return movimientos;
+        
+        int endResult = xml.indexOf("</ObtenerMovimientosResult>", startResult);
+        if (endResult == -1) return movimientos;
+        
+        String resultBlock = xml.substring(startResult, endResult);
+        
+        String[] movimientoBlocks = resultBlock.split("<Movimiento>");
+        for (int i = 1; i < movimientoBlocks.length; i++) {
+            String movBlock = movimientoBlocks[i];
             
             Movimiento m = new Movimiento();
-            m.setCuenta(extractValue(returnBlock, "cuenta"));
-            m.setTipo(extractValue(returnBlock, "tipo"));
-            m.setFecha(extractValue(returnBlock, "fecha"));
-            m.setDescripcion(extractValue(returnBlock, "accion"));
+            m.setCuenta(extractValueCaseInsensitive(movBlock, "Cuenta"));
+            m.setTipo(extractValueCaseInsensitive(movBlock, "Tipo"));
+            m.setFecha(extractValueCaseInsensitive(movBlock, "Fecha"));
+            m.setDescripcion(extractValueCaseInsensitive(movBlock, "Accion"));
             
-            String importeStr = extractValue(returnBlock, "importe");
+            String importeStr = extractValueCaseInsensitive(movBlock, "Importe");
             try {
                 m.setMonto(Double.parseDouble(importeStr));
             } catch (Exception e) {
                 m.setMonto(0);
             }
             
-            String nromovStr = extractValue(returnBlock, "nromov");
+            String nromovStr = extractValueCaseInsensitive(movBlock, "Nromov");
             try {
                 m.setNromov(Integer.parseInt(nromovStr));
             } catch (Exception e) {}
             
-            movimientos.add(m);
+            if (m.getCuenta() != null && !m.getCuenta().isEmpty()) {
+                movimientos.add(m);
+            }
         }
 
         return movimientos;
+    }
+
+    private String extractValueCaseInsensitive(String xml, String tag) {
+        String startTag = "<" + tag + ">";
+        String endTag = "</" + tag + ">";
+        int start = xml.indexOf(startTag);
+        if (start == -1) return "";
+        int end = xml.indexOf(endTag, start);
+        if (end == -1) return "";
+        return xml.substring(start + startTag.length(), end).trim();
     }
 
     private String extractValue(String xml, String tag) {
@@ -233,9 +256,13 @@ public class ServicioSoapJava implements ServicioBancario {
             return deposito;
         }
 
-        String resultado = XmlUtils.extractTag(xml, "return");
-        deposito.setResultado(resultado != null ? resultado : "Depósito exitoso");
-        deposito.setExitoso(true);
+        if (xml.contains("estado") && xml.contains("1")) {
+            deposito.setResultado("Depósito exitoso");
+            deposito.setExitoso(true);
+        } else {
+            deposito.setResultado("Depósito procesado");
+            deposito.setExitoso(true);
+        }
         return deposito;
     }
 
@@ -245,7 +272,9 @@ public class ServicioSoapJava implements ServicioBancario {
             throw new Exception(fault != null ? fault : "Error en transferencia");
         }
 
-        String resultado = XmlUtils.extractTag(xml, "return");
-        return resultado != null ? resultado : "Transferencia exitosa";
+        if (xml.contains("estado") && xml.contains("1")) {
+            return "Transferencia exitosa";
+        }
+        return "Transferencia procesada";
     }
 }

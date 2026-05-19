@@ -62,4 +62,12 @@ public class Movimiento {
     public void setDescripcion(String descripcion) {
         this.accion = descripcion;
     }
+
+    public int getNromov() {
+        return nromov;
+    }
+
+    public void setNromov(int nromov) {
+        this.nromov = nromov;
+    }
 }

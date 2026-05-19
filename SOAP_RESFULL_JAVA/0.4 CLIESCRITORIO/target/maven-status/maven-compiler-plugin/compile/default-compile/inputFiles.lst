@@ -1,9 +1,11 @@
 C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\app\Main.java
 C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\controllers\DepositoController.java
 C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\services\rest\ServicioRestJava.java
+C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\services\rest\ServicioRestDotNet.java
 C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\utils\JsonUtils.java
 C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\controllers\LoginController.java
 C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\models\Movimiento.java
+C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\services\soap\ServicioSoapDotNet.java
 C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\models\Usuario.java
 C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\services\soap\ServicioSoapJava.java
 C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\context\ContextoBackend.java
@@ -13,5 +15,6 @@ C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESF
 C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\models\Backend.java
 C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\utils\XmlUtils.java
 C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\controllers\MainController.java
+C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\controllers\TransferenciaController.java
 C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\services\interfaces\ServicioBancario.java
 C:\Users\kike\Documents\uni\octavo\Arquitectura\P1\clientesEurecaArqui\SOAP_RESFULL_JAVA\0.4 CLIESCRITORIO\src\main\java\ec\edu\espe\eurekadesktop\utils\ConsolaDebug.java
