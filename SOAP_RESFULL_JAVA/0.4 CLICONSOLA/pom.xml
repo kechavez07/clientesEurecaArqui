@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.eureka</groupId>
+    <artifactId>cliconsola</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Eureka Bank CLI Consola</name>
+    <description>Cliente CLI Consola para Eureka Bank</description>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.xml.ws</groupId>
+            <artifactId>jakarta.xml.ws-api</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>2.3.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>com.eureka.consola.AplicacionConsola</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.sun.xml.ws</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.3.5</version>
+                <configuration>
+                    <wsdlUrls>
+                        <wsdlUrl>http://209.145.48.25:8091/ROOT/CoreBancarioWS?wsdl</wsdlUrl>
+                        <wsdlUrl>http://209.145.48.25:8092/CoreBancarioWS?wsdl</wsdlUrl>
+                    </wsdlUrls>
+                    <keep>true</keep>
+                    <packageName>com.eureka.consola.cliente</packageName>
+                    <sourceDestDir>${project.build.directory}/generated-sources</sourceDestDir>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

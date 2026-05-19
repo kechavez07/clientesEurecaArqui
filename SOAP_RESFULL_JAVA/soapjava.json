@@ -1,0 +1,196 @@
+{
+    "info": {
+        "name": "EurekaBank SOAP API",
+        "_postman_id": "c9b3f8a1-1234-4abc-9def-soap-eurekabank",
+        "description": "Colección SOAP para CoreBancarioWS",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+        "name": "login",
+        "request": {
+            "method": "POST",
+            "header": [
+            {
+                "key": "Content-Type",
+                "value": "text/xml;charset=UTF-8"
+            }
+            ],
+            "body": {
+            "mode": "raw",
+            "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\n                  xmlns:ws=\"http://ws.monster.edu.ec/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ws:login>\n         <usuario>admin</usuario>\n         <clave>123456</clave>\n      </ws:login>\n   </soapenv:Body>\n</soapenv:Envelope>"
+            },
+            "url": {
+            "raw": "http://209.145.48.25:8091/ROOT/CoreBancarioWS",
+            "protocol": "http",
+            "host": [
+                "209",
+                "145",
+                "48",
+                "25"
+            ],
+            "port": "8091",
+            "path": [
+                "ROOT",
+                "CoreBancarioWS"
+            ]
+            }
+        }
+        },
+        {
+        "name": "registrarDeposito",
+        "request": {
+            "method": "POST",
+            "header": [
+            {
+                "key": "Content-Type",
+                "value": "text/xml;charset=UTF-8"
+            }
+            ],
+            "body": {
+            "mode": "raw",
+            "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\n                  xmlns:ws=\"http://ws.monster.edu.ec/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ws:registrarDeposito>\n         <cuenta>0010001</cuenta>\n         <valor>100.50</valor>\n      </ws:registrarDeposito>\n   </soapenv:Body>\n</soapenv:Envelope>"
+            },
+            "url": {
+            "raw": "http://209.145.48.25:8091/ROOT/CoreBancarioWS",
+            "protocol": "http",
+            "host": [
+                "209",
+                "145",
+                "48",
+                "25"
+            ],
+            "port": "8091",
+            "path": [
+                "ROOT",
+                "CoreBancarioWS"
+            ]
+            }
+        }
+        },
+        {
+        "name": "registrarRetiro",
+        "request": {
+            "method": "POST",
+            "header": [
+            {
+                "key": "Content-Type",
+                "value": "text/xml;charset=UTF-8"
+            }
+            ],
+            "body": {
+            "mode": "raw",
+            "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\n                  xmlns:ws=\"http://ws.monster.edu.ec/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ws:registrarRetiro>\n         <cuenta>0010001</cuenta>\n         <valor>50.00</valor>\n      </ws:registrarRetiro>\n   </soapenv:Body>\n</soapenv:Envelope>"
+            },
+            "url": {
+            "raw": "http://209.145.48.25:8091/ROOT/CoreBancarioWS",
+            "protocol": "http",
+            "host": [
+                "209",
+                "145",
+                "48",
+                "25"
+            ],
+            "port": "8091",
+            "path": [
+                "ROOT",
+                "CoreBancarioWS"
+            ]
+            }
+        }
+        },
+        {
+        "name": "registrarTransferencia",
+        "request": {
+            "method": "POST",
+            "header": [
+            {
+                "key": "Content-Type",
+                "value": "text/xml;charset=UTF-8"
+            }
+            ],
+            "body": {
+            "mode": "raw",
+            "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\n                  xmlns:ws=\"http://ws.monster.edu.ec/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ws:registrarTransferencia>\n         <cuentaOrigen>0010001</cuentaOrigen>\n         <cuentaDestino>0010002</cuentaDestino>\n         <valor>25.00</valor>\n      </ws:registrarTransferencia>\n   </soapenv:Body>\n</soapenv:Envelope>"
+            },
+            "url": {
+            "raw": "http://209.145.48.25:8091/ROOT/CoreBancarioWS",
+            "protocol": "http",
+            "host": [
+                "209",
+                "145",
+                "48",
+                "25"
+            ],
+            "port": "8091",
+            "path": [
+                "ROOT",
+                "CoreBancarioWS"
+            ]
+            }
+        }
+        },
+        {
+        "name": "obtenerMovimientos",
+        "request": {
+            "method": "POST",
+            "header": [
+            {
+                "key": "Content-Type",
+                "value": "text/xml;charset=UTF-8"
+            }
+            ],
+            "body": {
+            "mode": "raw",
+            "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\n                  xmlns:ws=\"http://ws.monster.edu.ec/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ws:obtenerMovimientos>\n         <cuenta>0010001</cuenta>\n      </ws:obtenerMovimientos>\n   </soapenv:Body>\n</soapenv:Envelope>"
+            },
+            "url": {
+            "raw": "http://209.145.48.25:8091/ROOT/CoreBancarioWS",
+            "protocol": "http",
+            "host": [
+                "209",
+                "145",
+                "48",
+                "25"
+            ],
+            "port": "8091",
+            "path": [
+                "ROOT",
+                "CoreBancarioWS"
+            ]
+            }
+        }
+        },
+        {
+        "name": "ping",
+        "request": {
+            "method": "POST",
+            "header": [
+            {
+                "key": "Content-Type",
+                "value": "text/xml;charset=UTF-8"
+            }
+            ],
+            "body": {
+            "mode": "raw",
+            "raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\n                  xmlns:ws=\"http://ws.monster.edu.ec/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ws:ping/>\n   </soapenv:Body>\n</soapenv:Envelope>"
+            },
+            "url": {
+            "raw": "http://209.145.48.25:8091/ROOT/CoreBancarioWS",
+            "protocol": "http",
+            "host": [
+                "209",
+                "145",
+                "48",
+                "25"
+            ],
+            "port": "8091",
+            "path": [
+                "ROOT",
+                "CoreBancarioWS"
+            ]
+            }
+        }
+        }
+    ]
+}

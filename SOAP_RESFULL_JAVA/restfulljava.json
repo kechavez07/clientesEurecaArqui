@@ -1,0 +1,185 @@
+{
+    "info": {
+        "name": "EurekaBank REST API",
+        "_postman_id": "a7f3c8d2-9e4b-4f12-b123-eurekabankrest",
+        "description": "Colección de endpoints REST para EurekaBank",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+        "name": "1. Login",
+        "request": {
+            "method": "POST",
+            "header": [
+            {
+                "key": "Content-Type",
+                "value": "application/json"
+            }
+            ],
+            "body": {
+            "mode": "raw",
+            "raw": "{\n  \"usuario\": \"MONSTER\",\n  \"password\": \"MONSTER9\"\n}"
+            },
+            "url": {
+            "raw": "http://209.145.48.25:8090/resources/corebancario/login",
+            "protocol": "http",
+            "host": [
+                "209",
+                "145",
+                "48",
+                "25"
+            ],
+            "port": "8090",
+            "path": [
+                "resources",
+                "corebancario",
+                "login"
+            ]
+            }
+        }
+        },
+        {
+        "name": "2. Deposito",
+        "request": {
+            "method": "POST",
+            "header": [
+            {
+                "key": "Content-Type",
+                "value": "application/json"
+            }
+            ],
+            "body": {
+            "mode": "raw",
+            "raw": "{\n  \"cuenta\": \"00100001\",\n  \"importe\": 500.0\n}"
+            },
+            "url": {
+            "raw": "http://209.145.48.25:8090/resources/corebancario/deposito",
+            "protocol": "http",
+            "host": [
+                "209",
+                "145",
+                "48",
+                "25"
+            ],
+            "port": "8090",
+            "path": [
+                "resources",
+                "corebancario",
+                "deposito"
+            ]
+            }
+        }
+        },
+        {
+        "name": "3. Retiro",
+        "request": {
+            "method": "POST",
+            "header": [
+            {
+                "key": "Content-Type",
+                "value": "application/json"
+            }
+            ],
+            "body": {
+            "mode": "raw",
+            "raw": "{\n  \"cuenta\": \"00100001\",\n  \"importe\": 100.0\n}"
+            },
+            "url": {
+            "raw": "http://209.145.48.25:8090/resources/corebancario/retiro",
+            "protocol": "http",
+            "host": [
+                "209",
+                "145",
+                "48",
+                "25"
+            ],
+            "port": "8090",
+            "path": [
+                "resources",
+                "corebancario",
+                "retiro"
+            ]
+            }
+        }
+        },
+        {
+        "name": "4. Transferencia",
+        "request": {
+            "method": "POST",
+            "header": [
+            {
+                "key": "Content-Type",
+                "value": "application/json"
+            }
+            ],
+            "body": {
+            "mode": "raw",
+            "raw": "{\n  \"cuentaOrigen\": \"00100001\",\n  \"cuentaDestino\": \"00200001\",\n  \"importe\": 200.0\n}"
+            },
+            "url": {
+            "raw": "http://209.145.48.25:8090/resources/corebancario/transferencia",
+            "protocol": "http",
+            "host": [
+                "209",
+                "145",
+                "48",
+                "25"
+            ],
+            "port": "8090",
+            "path": [
+                "resources",
+                "corebancario",
+                "transferencia"
+            ]
+            }
+        }
+        },
+        {
+        "name": "5. Historial Movimientos",
+        "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+            "raw": "http://209.145.48.25:8090/resources/corebancario/movimientos/00100001",
+            "protocol": "http",
+            "host": [
+                "209",
+                "145",
+                "48",
+                "25"
+            ],
+            "port": "8090",
+            "path": [
+                "resources",
+                "corebancario",
+                "movimientos",
+                "00100001"
+            ]
+            }
+        }
+        },
+        {
+        "name": "6. Ping",
+        "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+            "raw": "http://209.145.48.25:8090/resources/corebancario/ping",
+            "protocol": "http",
+            "host": [
+                "209",
+                "145",
+                "48",
+                "25"
+            ],
+            "port": "8090",
+            "path": [
+                "resources",
+                "corebancario",
+                "ping"
+            ]
+            }
+        }
+        }
+    ]
+}
